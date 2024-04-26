@@ -51,4 +51,52 @@ class Req01CadastrarProduto {
 			assertNull(produto1);
 		}
 	}
+
+	@Test
+	void ct04_cadastrar_produto_quantidade_invalida() {
+		Produto produto1 = null;
+		try {
+			produto1 = new Produto("Lain Iwakura", "The Wired", 11, -1);
+			fail("Deve falhar para quantidade inválida!");
+		} catch (Exception e) {
+			assertEquals("A quantidade deve ser maior que zero", e.getMessage());
+			assertNull(produto1);
+		}
+	}
+
+	@Test
+	void ct05_cadastrar_produto_descricao_invalida_null() {
+		Produto produto1 = null;
+		try {
+			produto1 = new Produto(null, "maquina de lavar", 22.30, 10);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			assertEquals("A descricao não deve estar em branco", e.getMessage());
+			assertNull(produto1);
+		}
+	}
+
+	@Test
+	void ct06_cadastrar_produto_categoria_invalida() {
+		Produto produto1 = null;
+		try {
+			produto1 = new Produto("descrição", "", 22.30, 10);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			assertEquals("A categoria não deve estar em branco", e.getMessage());
+			assertNull(produto1);
+		}
+	}
+
+	@Test
+	void ct07_cadastrar_produto_categoria_invalida_null() {
+		Produto produto1 = null;
+		try {
+			produto1 = new Produto("descrição", null, 22.30, 10);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			assertEquals("A categoria não deve estar em branco", e.getMessage());
+			assertNull(produto1);
+		}
+	}
 }
